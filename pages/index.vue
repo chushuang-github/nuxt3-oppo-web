@@ -1,7 +1,21 @@
 <template>
-  <div class="home">home</div>
+  <div class="home">
+    <div class="wrapper content">
+      <swiper :banners="banners"></swiper>
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
+import { useHomeStore } from "../store/home";
 
-<style scoped lang="scss"></style>
+const homeStore = useHomeStore();
+const { banners } = storeToRefs(homeStore);
+</script>
+
+<style scoped lang="scss">
+.home {
+  background-color: $bgGrayColor;
+}
+</style>
