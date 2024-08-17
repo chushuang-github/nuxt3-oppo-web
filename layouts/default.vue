@@ -18,7 +18,6 @@ import { useHomeStore } from "../store/home";
 
 const homeStore = useHomeStore();
 const { navbars } = storeToRefs(homeStore);
-homeStore.fetchHomeInfoData("oppo");
 </script>
 
 <style scoped lang="scss"></style>

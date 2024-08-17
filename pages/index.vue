@@ -6,8 +6,11 @@
         :categorys="categorys"
         @itemClick="handleItemClick"
       ></tab-category>
-      <template v-for="item in categorys" :key="item.id">
-        <section-category :category="item"></section-category>
+      <template v-for="category in categorys" :key="category.id">
+        <section-category
+          :category="category"
+          v-if="category.productDetailss && category.productDetailss.length"
+        ></section-category>
       </template>
     </div>
   </div>
@@ -20,6 +23,7 @@ import type { ICategory } from "../store/home";
 
 const homeStore = useHomeStore();
 const { banners, categorys } = storeToRefs(homeStore);
+homeStore.fetchHomeInfoData("oppo");
 
 const handleItemClick = (item: ICategory) => {
   console.log(item);
