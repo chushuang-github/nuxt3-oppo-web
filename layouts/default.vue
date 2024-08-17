@@ -2,6 +2,7 @@
   <div class="layout">
     <!-- header -->
     <app-header></app-header>
+    <navbar></navbar>
 
     <!-- 页面内容占位 -->
     <slot></slot>
