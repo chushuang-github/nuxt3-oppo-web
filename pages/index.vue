@@ -6,6 +6,9 @@
         :categorys="categorys"
         @itemClick="handleItemClick"
       ></tab-category>
+      <template v-for="item in categorys" :key="item.id">
+        <section-category :category="item"></section-category>
+      </template>
     </div>
   </div>
 </template>
