@@ -36,4 +36,6 @@ export default defineNuxtConfig({
       noscript: [{ children: "Javascript is required" }],
     },
   },
+  // 配置nuxt3的扩展模块
+  modules: ["@pinia/nuxt", "@element-plus/nuxt"],
 });

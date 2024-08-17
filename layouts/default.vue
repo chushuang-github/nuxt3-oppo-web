@@ -2,7 +2,7 @@
   <div class="layout">
     <!-- header -->
     <app-header></app-header>
-    <navbar></navbar>
+    <navbar :navbars="navbars"></navbar>
 
     <!-- 页面内容占位 -->
     <slot></slot>
@@ -12,6 +12,13 @@
   </div>
 </template>
 
-<script setup lant="ts"></script>
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
+import { useHomeStore } from "../store/home";
+
+const homeStore = useHomeStore();
+const { navbars } = storeToRefs(homeStore);
+homeStore.fetchHomeInfoData("oppo");
+</script>
 
 <style scoped lang="scss"></style>

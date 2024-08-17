@@ -6,25 +6,47 @@
         <h1 class="title">OPPO官网</h1>
       </NuxtLink>
       <ul class="content-center">
-        <li>
-          <NuxtLink class="link" to="/">OPPO专区</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink class="link" to="/">OnePlus专区</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink class="link" to="/">智能硬件</NuxtLink>
-        </li>
-        <li>
-          <NuxtLink class="link" to="/">服务</NuxtLink>
-        </li>
+        <template v-for="(item, index) in navbars" :key="index">
+          <li :class="{ active: currentIndex === index }">
+            <NuxtLink
+              class="link"
+              :to="getPagePath(item)"
+              @click="handleItemClick(index)"
+              >{{ item.title }}</NuxtLink
+            >
+          </li>
+        </template>
       </ul>
       <Search class="content-right"></Search>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, computed } from "vue";
+import type { INavBar } from "../../store/home";
+interface IProps {
+  navbars: INavBar[];
+}
+withDefaults(defineProps<IProps>(), {
+  navbars: () => [],
+});
+
+const currentIndex = ref<number>(0);
+const getPagePath = computed(() => {
+  return (item: INavBar) => {
+    let path = "/";
+    if (item.type !== "oppo") {
+      path += item.type;
+    }
+    return path;
+  };
+});
+
+const handleItemClick = (index: number) => {
+  currentIndex.value = index;
+};
+</script>
 
 <style scoped lang="scss">
 .navbar {
