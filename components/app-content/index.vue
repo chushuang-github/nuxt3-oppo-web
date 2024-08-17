@@ -32,6 +32,11 @@ const { banners, categorys } = storeToRefs(homeStore);
 homeStore.fetchHomeInfoData(props.type);
 
 const handleItemClick = (item: ICategory) => {
-  console.log(item);
+  return navigateTo({
+    path: "/detail",
+    query: {
+      type: item.type,
+    },
+  });
 };
 </script>
